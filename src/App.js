@@ -37,12 +37,24 @@ function App() {
     setTodosList(newTodosList);
   };
 
+  const handleRemove = (id) => {
+    const newTodosList = todosList.filter((item) => id !== item.id);
+    setTodosList(newTodosList);
+  };
+
   console.log(todosList);
   return (
     <div className='appContainer'>
       <h2>Todo list</h2>
       {todosList.map((item) => (
-        <TodoItem key={item.id} checked={item.checked} task={item.task} handleOnCheck={(e) => handleOnCheck(e, item.id)} setTaskValue={(task) => setTaskValue(task, item.id)} />
+        <TodoItem
+          key={item.id}
+          checked={item.checked}
+          task={item.task}
+          handleOnCheck={(e) => handleOnCheck(e, item.id)}
+          setTaskValue={(task) => setTaskValue(task, item.id)}
+          handleRemove={() => handleRemove(item.id)}
+        />
       ))}
     </div>
   );

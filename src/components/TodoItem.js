@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Button from './Button';
 import { useState } from 'react';
 
-function TodoItem({ checked, task, handleOnCheck, setTaskValue }) {
+function TodoItem({ checked, task, handleOnCheck, setTaskValue, handleRemove }) {
   const [isTaskEdited, setIsTaskEdited] = useState(false);
   const [inputValue, setInputValue] = useState(task);
 
@@ -32,7 +32,7 @@ function TodoItem({ checked, task, handleOnCheck, setTaskValue }) {
           </>
         ) : (
           <>
-            <Button handleOnClick={onRemove}>remove</Button>
+            <Button handleOnClick={handleRemove}>remove</Button>
           </>
         )}
       </div>
