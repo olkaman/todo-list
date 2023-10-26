@@ -16,11 +16,33 @@ function App() {
       checked: true,
     },
   ]);
+
+  const handleOnCheck = (e, id) => {
+    const newTodosList = todosList.map((item) => {
+      console.log(e);
+      if (id === item.id) {
+        return { ...item, checked: e.target.checked };
+      } else return item;
+    });
+
+    setTodosList(newTodosList);
+  };
+
+  const setTaskValue = (task, id) => {
+    const newTodosList = todosList.map((item) => {
+      if (id === item.id) return { ...item, task };
+      else return item;
+    });
+
+    setTodosList(newTodosList);
+  };
+
+  console.log(todosList);
   return (
     <div className='appContainer'>
       <h2>Todo list</h2>
       {todosList.map((item) => (
-        <TodoItem key={item.id} checked={item.checked} task={item.task} />
+        <TodoItem key={item.id} checked={item.checked} task={item.task} handleOnCheck={(e) => handleOnCheck(e, item.id)} setTaskValue={(task) => setTaskValue(task, item.id)} />
       ))}
     </div>
   );

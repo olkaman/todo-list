@@ -3,34 +3,35 @@ import clsx from 'clsx';
 import Button from './Button';
 import { useState } from 'react';
 
-function TodoItem({ checked, task }) {
-  const [isEdited, setIsEdited] = useState(false);
-  const onEdit = () => {
-    setIsEdited(true);
+function TodoItem({ checked, task, handleOnCheck, setTaskValue }) {
+  const [isTaskEdited, setIsTaskEdited] = useState(false);
+  const [inputValue, setInputValue] = useState(task);
+
+  const handleOnEditTask = (e) => {
+    setInputValue(e.target.value);
   };
-  const onSave = () => {
-    setIsEdited(false);
+
+  const handleOnSave = () => {
+    setIsTaskEdited(!isTaskEdited);
+    setTaskValue(inputValue);
   };
-  const onCancel = () => {
-    setIsEdited(false);
-  };
+
   const onRemove = () => {};
   return (
     <div className={clsx('flex', styles.todoItem)}>
       <div className='flex'>
-        <input type='checkbox' checked={checked} />
-        {isEdited ? <input type='text' value={task} /> : <p>{task}</p>}
+        <input type='checkbox' checked={checked} onChange={handleOnCheck} name='checked' />
+        {isTaskEdited ? <input type='text' value={inputValue} onChange={handleOnEditTask} name='task' /> : <p onClick={() => setIsTaskEdited(!isTaskEdited)}>{task}</p>}
       </div>
 
       <div>
-        {isEdited ? (
+        {isTaskEdited ? (
           <>
-            <Button handleOnClick={onSave}>Save</Button>
-            <Button handleOnClick={onCancel}>Cancel</Button>
+            <Button handleOnClick={handleOnSave}>Save</Button>
+            <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)}>Cancel</Button>
           </>
         ) : (
           <>
-            <Button handleOnClick={onEdit}>Edit</Button>
             <Button handleOnClick={onRemove}>remove</Button>
           </>
         )}
