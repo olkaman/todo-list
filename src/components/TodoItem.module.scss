@@ -14,7 +14,7 @@
     transform: scale(1.02);
 
     .todoText {
-      text-decoration: underline;
+      transition: all 0.4s;
       color: yellow;
     }
   }

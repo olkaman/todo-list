@@ -22,7 +22,7 @@ function TodoItem({ checked, task, handleOnCheck, setTaskValue, handleRemove }) 
       <div className='flex'>
         <input type='checkbox' checked={checked} onChange={handleOnCheck} name='checked' />
         {isTaskEdited ? (
-          <input type='text' value={inputValue} onChange={handleOnEditTask} name='task' />
+          <input type='search' value={inputValue} onChange={handleOnEditTask} name='task' />
         ) : (
           <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)}>
             {task}
