@@ -2,20 +2,10 @@ import TodoItem from './components/TodoItem';
 import './GlobalStyles.scss';
 import './AppStyles.scss';
 import { useState } from 'react';
+import AddNewTodo from './components/AddNewTodo';
 
 function App() {
-  const [todosList, setTodosList] = useState([
-    {
-      id: '1',
-      task: 'dsdsds',
-      checked: true,
-    },
-    {
-      id: '2',
-      task: 'asasdas',
-      checked: true,
-    },
-  ]);
+  const [todosList, setTodosList] = useState([]);
 
   const handleOnCheck = (e, id) => {
     const newTodosList = todosList.map((item) => {
@@ -37,6 +27,16 @@ function App() {
     setTodosList(newTodosList);
   };
 
+  const addTask = (task) => {
+    const newTodo = {
+      id: (Math.random() * 1000).toString(),
+      task,
+      checked: false,
+    };
+
+    setTodosList([...todosList, newTodo]);
+  };
+
   const handleRemove = (id) => {
     const newTodosList = todosList.filter((item) => id !== item.id);
     setTodosList(newTodosList);
@@ -46,6 +46,7 @@ function App() {
   return (
     <div className='appContainer'>
       <h2>Todo list</h2>
+      <AddNewTodo addTask={addTask} />
       {todosList.map((item) => (
         <TodoItem
           key={item.id}
