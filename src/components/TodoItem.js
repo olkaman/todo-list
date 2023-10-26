@@ -18,10 +18,16 @@ function TodoItem({ checked, task, handleOnCheck, setTaskValue, handleRemove }) 
 
   const onRemove = () => {};
   return (
-    <div className={clsx('flex', styles.todoItem)}>
+    <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active)}>
       <div className='flex'>
         <input type='checkbox' checked={checked} onChange={handleOnCheck} name='checked' />
-        {isTaskEdited ? <input type='text' value={inputValue} onChange={handleOnEditTask} name='task' /> : <p onClick={() => setIsTaskEdited(!isTaskEdited)}>{task}</p>}
+        {isTaskEdited ? (
+          <input type='text' value={inputValue} onChange={handleOnEditTask} name='task' />
+        ) : (
+          <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)}>
+            {task}
+          </button>
+        )}
       </div>
 
       <div>

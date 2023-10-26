@@ -2,6 +2,27 @@
   padding: 20px;
   background-color: #232323;
   border-radius: 8px;
-  margin-bottom: 24px;
+  margin-top: 16px;
   justify-content: space-between;
+  transition: all 0.4s;
+
+  &.active {
+    border: yellow solid 1px;
+  }
+
+  &:hover {
+    transform: scale(1.02);
+
+    .todoText {
+      text-decoration: underline;
+      color: yellow;
+    }
+  }
+
+  .todoText {
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+  }
 }
