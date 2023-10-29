@@ -7,21 +7,10 @@ import AddNewTodo from './components/AddNewTodo';
 function App() {
   const [todosList, setTodosList] = useState([]);
 
-  const handleOnCheck = (e, id) => {
-    const newTodosList = todosList.map((item) => {
-      console.log(e);
-      if (id === item.id) {
-        return { ...item, checked: e.target.checked };
-      } else return item;
-    });
-
-    setTodosList(newTodosList);
-  };
-
-  const setTaskValue = (task, id) => {
-    const newTodosList = todosList.map((item) => {
-      if (id === item.id) return { ...item, task };
-      else return item;
+  const editTaskValue = (updatedTodo) => {
+    const newTodosList = todosList.map((todo) => {
+      if (updatedTodo.id === todo.id) return updatedTodo;
+      else return todo;
     });
 
     setTodosList(newTodosList);
@@ -29,7 +18,7 @@ function App() {
 
   const addTask = (task) => {
     const newTodo = {
-      id: (Math.random() * 1000).toString(),
+      id: (Math.random() * 100000).toString(),
       task,
       checked: false,
     };
@@ -47,15 +36,8 @@ function App() {
     <div className='appContainer'>
       <h2>Todo list</h2>
       <AddNewTodo addTask={addTask} />
-      {todosList.map((item) => (
-        <TodoItem
-          key={item.id}
-          checked={item.checked}
-          task={item.task}
-          handleOnCheck={(e) => handleOnCheck(e, item.id)}
-          setTaskValue={(task) => setTaskValue(task, item.id)}
-          handleRemove={() => handleRemove(item.id)}
-        />
+      {todosList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />
       ))}
     </div>
   );
