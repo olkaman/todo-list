@@ -1,0 +1,22 @@
+button {
+  cursor: pointer;
+  transition: all 0.4;
+
+  &.iconButton {
+    border: none;
+    background: none;
+
+    opacity: 0.5;
+
+    svg {
+      color: gray;
+    }
+
+    &:hover svg {
+      color: white;
+    }
+  }
+
+  &.regularButton {
+  }
+}

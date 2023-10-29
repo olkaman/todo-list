@@ -2,6 +2,7 @@ import styles from './TodoItem.module.scss';
 import clsx from 'clsx';
 import Button from './Button';
 import { useState } from 'react';
+import { Trash } from 'lucide-react';
 
 function TodoItem({ checked, task, handleOnCheck, setTaskValue, handleRemove }) {
   const [isTaskEdited, setIsTaskEdited] = useState(false);
@@ -38,7 +39,9 @@ function TodoItem({ checked, task, handleOnCheck, setTaskValue, handleRemove }) 
           </>
         ) : (
           <>
-            <Button handleOnClick={handleRemove}>remove</Button>
+            <Button handleOnClick={handleRemove} type='iconButton'>
+              {<Trash />}
+            </Button>
           </>
         )}
       </div>
