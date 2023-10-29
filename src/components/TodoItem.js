@@ -29,7 +29,7 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
           <input type='search' value={inputValue} onChange={handleOnEditTask} />
         ) : (
           <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)}>
-            {todo.task}
+            {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
           </button>
         )}
       </div>

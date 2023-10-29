@@ -16,6 +16,10 @@
     .todoText {
       transition: all 0.4s;
       color: yellow;
+
+      .taskPlaceholder {
+        color: #fff;
+      }
     }
   }
 
@@ -24,5 +28,9 @@
     background: none;
     color: #fff;
     cursor: pointer;
+
+    .taskPlaceholder {
+      opacity: 0.3;
+    }
   }
 }
