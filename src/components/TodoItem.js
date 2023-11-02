@@ -27,11 +27,11 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
   return (
     <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active)}>
       <div className='flex'>
-        <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} />
+        {!isTaskEdited && <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
           <input type='search' value={inputValue} onChange={handleOnEditTask} placeholder='Enter task name' />
         ) : (
-          <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)}>
+          <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={isChecked}>
             {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
           </button>
         )}
