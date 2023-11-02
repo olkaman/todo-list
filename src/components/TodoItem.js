@@ -26,33 +26,23 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
 
   return (
     <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active, isChecked && styles.isDone)}>
-      <div className='flex'>
+      <div className='flex spaceBetween'>
         {!isTaskEdited && <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
-          <input type='search' value={inputValue} onChange={handleOnEditTask} placeholder='Enter task name' />
+          <div className='flex spaceBetween'>
+            <input type='search' value={inputValue} onChange={handleOnEditTask} placeholder='Enter task name' />
+            <div className='flex'>
+              <Button handleOnClick={handleOnSave} icon={<Check />} />
+              <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)} icon={<X />} />
+            </div>
+          </div>
         ) : (
-          <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={isChecked}>
-            {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
-          </button>
-        )}
-      </div>
-
-      <div>
-        {isTaskEdited ? (
-          <>
-            <Button handleOnClick={handleOnSave} design='iconButton'>
-              <Check />
-            </Button>
-            <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)} design='iconButton'>
-              <X />
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button handleOnClick={handleRemove} design='iconButton'>
-              {<Trash />}
-            </Button>
-          </>
+          <div className='flex spaceBetween'>
+            <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={isChecked}>
+              {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
+            </button>
+            <Button handleOnClick={handleRemove} icon={<Trash />} />
+          </div>
         )}
       </div>
     </div>

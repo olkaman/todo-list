@@ -27,9 +27,7 @@ function AddNewTodo({ addTask }) {
           }
         }}
       />
-      <Button design='iconButton' handleOnClick={handleOnAdd}>
-        <PlusSquare />
-      </Button>
+      <Button design='iconButton' handleOnClick={handleOnAdd} icon={<PlusSquare />} />
     </div>
   );
 }

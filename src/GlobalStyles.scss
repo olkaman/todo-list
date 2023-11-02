@@ -37,6 +37,11 @@ h2 {
   align-items: center;
 }
 
+.spaceBetween {
+  justify-content: space-between;
+  width: 100%;
+}
+
 input:not([type='checkbox']) {
   background-color: $background-gray;
   border: $dark-gray 1px solid;
