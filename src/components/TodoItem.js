@@ -25,7 +25,7 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
   };
 
   return (
-    <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active)}>
+    <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active, isChecked && styles.isDone)}>
       <div className='flex'>
         {!isTaskEdited && <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
