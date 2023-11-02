@@ -1,0 +1,22 @@
+@import '../GlobalStyles.scss';
+
+.checkBox {
+  border: 1px solid $white;
+  background: none;
+  width: 27px;
+  height: 27px;
+  border-radius: 15px;
+  margin-right: 8px;
+
+  &.checkboxChecked {
+    background: $accent-color;
+    border: 2px solid $accent-color;
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+  }
+}
