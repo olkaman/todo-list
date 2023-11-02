@@ -26,7 +26,7 @@ function App() {
 
   const addTask = (task) => {
     const newTodo = {
-      id: (Math.random() * 100000).toString(),
+      id: Math.floor(Math.random() * 10000000).toString(),
       task,
       checked: false,
     };
