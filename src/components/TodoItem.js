@@ -1,7 +1,7 @@
 import styles from './TodoItem.module.scss';
 import clsx from 'clsx';
 import Button from './Button';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Trash, Check, X } from 'lucide-react';
 import CustomCheckbox from './CustomCheckbox';
 
@@ -30,7 +30,18 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
         {!isTaskEdited && <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
           <div className='flex spaceBetween'>
-            <input type='search' value={inputValue} onChange={handleOnEditTask} placeholder='Enter task name' />
+            <input
+              type='text'
+              value={inputValue}
+              onChange={handleOnEditTask}
+              onKeyPress={(event) => {
+                if (event.key === 'Enter') {
+                  handleOnSave();
+                }
+              }}
+              placeholder='Enter task name'
+              maxLength='200'
+            />
             <div className='flex'>
               <Button handleOnClick={handleOnSave} icon={<Check />} />
               <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)} icon={<X />} />

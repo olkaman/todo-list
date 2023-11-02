@@ -54,6 +54,10 @@ input:not([type='checkbox']) {
   min-width: 500px;
 }
 
+input:focus {
+  outline: $accent-color 1px solid;
+}
+
 input[type='checkbox'] {
   padding: 8px;
   height: 30px;

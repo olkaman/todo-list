@@ -7,8 +7,10 @@ import AddNewTodo from './components/AddNewTodo';
 // TODO
 // local storage
 // authorization
-// styles
 // backend
+// number of characters
+// responsiveness
+// info, that all is done and if remove all tasks
 
 function App() {
   const [todosList, setTodosList] = useState([]);

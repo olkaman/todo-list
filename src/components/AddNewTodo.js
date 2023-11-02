@@ -18,7 +18,7 @@ function AddNewTodo({ addTask }) {
     <div className='flex'>
       <input
         placeholder='Add new task'
-        type='search'
+        type='text'
         value={inputValue}
         onChange={handleOnChange}
         onKeyPress={(event) => {
@@ -26,6 +26,7 @@ function AddNewTodo({ addTask }) {
             handleOnAdd();
           }
         }}
+        maxLength='200'
       />
       <Button design='iconButton' handleOnClick={handleOnAdd} icon={<PlusSquare />} />
     </div>
