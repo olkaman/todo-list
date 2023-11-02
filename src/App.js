@@ -4,6 +4,12 @@ import './AppStyles.scss';
 import { useState } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 
+// TODO
+// local storage
+// authorization
+// styles
+// backend
+
 function App() {
   const [todosList, setTodosList] = useState([]);
 
@@ -35,6 +41,7 @@ function App() {
   return (
     <div className='appContainer'>
       <h2>Todo list</h2>
+
       <AddNewTodo addTask={addTask} />
       {todosList.map((todo) => (
         <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />

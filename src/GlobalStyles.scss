@@ -1,16 +1,56 @@
+$font-family: 'Outfit', sans-serif;
+$body-font-size: 16px;
+
+//colors
+$white: rgba(255, 255, 255, 0.7);
+$background-gray: #373737;
+$dark-gray: #232323;
+$accent-color: #ffea00;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  background-color: #373737;
-  color: #fff;
+  background-color: $background-gray;
+  color: $white;
+  font-family: $font-family;
 }
 
 p {
   margin: 0;
 }
 
+h2 {
+  font-size: 36px;
+  text-align: center;
+}
+
 .flex {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+}
+
+input:not([type='checkbox']) {
+  background-color: $background-gray;
+  border: $dark-gray 1px solid;
+  padding: 12px;
+  border-radius: 4px;
+  color: $white;
+  font-family: $font-family;
+  font-size: $body-font-size;
+  width: 100%;
+  min-width: 500px;
+}
+
+input[type='checkbox'] {
+  padding: 8px;
+  height: 30px;
+  width: 30px;
+  background-color: $accent-color;
 }

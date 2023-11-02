@@ -2,7 +2,7 @@ import styles from './TodoItem.module.scss';
 import clsx from 'clsx';
 import Button from './Button';
 import { useState } from 'react';
-import { Trash } from 'lucide-react';
+import { Trash, Check, X } from 'lucide-react';
 
 function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
   const [isTaskEdited, setIsTaskEdited] = useState(false);
@@ -26,7 +26,7 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
       <div className='flex'>
         <input type='checkbox' checked={todo.checked} onChange={handleOnCheck} />
         {isTaskEdited ? (
-          <input type='search' value={inputValue} onChange={handleOnEditTask} />
+          <input type='search' value={inputValue} onChange={handleOnEditTask} placeholder='Enter task name' />
         ) : (
           <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)}>
             {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
@@ -37,12 +37,16 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
       <div>
         {isTaskEdited ? (
           <>
-            <Button handleOnClick={handleOnSave}>Save</Button>
-            <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)}>Cancel</Button>
+            <Button handleOnClick={handleOnSave} design='iconButton'>
+              <Check />
+            </Button>
+            <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)} design='iconButton'>
+              <X />
+            </Button>
           </>
         ) : (
           <>
-            <Button handleOnClick={handleRemove} type='iconButton'>
+            <Button handleOnClick={handleRemove} design='iconButton'>
               {<Trash />}
             </Button>
           </>

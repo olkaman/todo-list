@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from './Button';
+import { PlusSquare } from 'lucide-react';
 
 function AddNewTodo({ addTask }) {
   const [inputValue, setInputValue] = useState('');
@@ -14,7 +15,7 @@ function AddNewTodo({ addTask }) {
   };
 
   return (
-    <>
+    <div className='flex'>
       <input
         placeholder='Add new task'
         type='search'
@@ -26,8 +27,10 @@ function AddNewTodo({ addTask }) {
           }
         }}
       />
-      <Button handleOnClick={handleOnAdd}>Add</Button>
-    </>
+      <Button design='iconButton' handleOnClick={handleOnAdd}>
+        <PlusSquare />
+      </Button>
+    </div>
   );
 }
 
