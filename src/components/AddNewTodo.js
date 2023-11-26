@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from './Button';
 import { PlusSquare } from 'lucide-react';
 
-function AddNewTodo({ addTask }) {
+function AddNewTodo({ handleAddTask }) {
   const [inputValue, setInputValue] = useState('');
 
   const handleOnChange = (e) => {
@@ -10,7 +10,7 @@ function AddNewTodo({ addTask }) {
   };
 
   const handleOnAdd = () => {
-    addTask(inputValue);
+    handleAddTask(inputValue);
     setInputValue('');
   };
 

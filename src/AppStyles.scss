@@ -1,4 +1,13 @@
 .appContainer {
   max-width: 800px;
   margin: 0 auto;
+
+  h2 {
+    margin-bottom: 8px;
+  }
+
+  .remainingTasks {
+    margin-bottom: 24px;
+    text-align: center;
+  }
 }
