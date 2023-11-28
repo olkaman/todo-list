@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 import { Check, X } from 'lucide-react';
 import Button from './components/Button';
+import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 
 // TODO
 // local storage
@@ -16,38 +17,42 @@ import Button from './components/Button';
 // input field component
 
 function App() {
-  const [todosList, setTodosList] = useState([]);
+  const [todosList, setTodosList] = useState(getTasksFromLocalStorage);
   const numberOfDoneTasks = todosList.filter((item) => item.checked === true).length;
   const totalNumberOfTasks = todosList.length;
   const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
-    if (numberOfDoneTasks === 0) setShowMessage(false);
-    setShowMessage(numberOfDoneTasks === totalNumberOfTasks);
-  }, [numberOfDoneTasks, totalNumberOfTasks]);
+    if (todosList.length === 0) setShowMessage(false);
+    else setShowMessage(numberOfDoneTasks === totalNumberOfTasks);
+  }, [numberOfDoneTasks, totalNumberOfTasks, todosList]);
+  console.log(todosList);
+  useEffect(() => {
+    saveInLocalStorage(todosList);
+  }, [todosList]);
 
   const editTaskValue = (updatedTodo) => {
-    const newTodosList = todosList.map((todo) => {
+    const newList = todosList.map((todo) => {
       if (updatedTodo.id === todo.id) return updatedTodo;
       else return todo;
     });
 
-    setTodosList(newTodosList);
+    setTodosList(newList);
   };
-  console.log(showMessage);
+
   const handleAddTask = (task) => {
     const newTodo = {
       id: Math.floor(Math.random() * 10000000).toString(),
       task,
       checked: false,
     };
-
-    setTodosList([...todosList, newTodo]);
+    const newList = [...todosList, newTodo];
+    setTodosList(newList);
   };
 
   const handleRemove = (id) => {
-    const newTodosList = todosList.filter((item) => id !== item.id);
-    setTodosList(newTodosList);
+    const newList = todosList.filter((item) => id !== item.id);
+    setTodosList(newList);
   };
 
   const resetTodosList = () => {

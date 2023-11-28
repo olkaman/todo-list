@@ -8,7 +8,7 @@ import CustomCheckbox from './CustomCheckbox';
 function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
   const [isTaskEdited, setIsTaskEdited] = useState(false);
   const [inputValue, setInputValue] = useState(todo.task);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(todo.checked);
 
   const handleOnEditTask = (e) => {
     setInputValue(e.target.value);
@@ -25,9 +25,9 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
   };
 
   return (
-    <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active, isChecked && styles.isDone)}>
+    <div className={clsx('flex', styles.todoItem, isTaskEdited && styles.active, todo.checked && styles.isDone)}>
       <div className='flex spaceBetween'>
-        {!isTaskEdited && <CustomCheckbox checked={isChecked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
+        {!isTaskEdited && <CustomCheckbox checked={todo.checked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
           <div className='flex spaceBetween'>
             <input
@@ -49,7 +49,7 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
           </div>
         ) : (
           <div className='flex spaceBetween'>
-            <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={isChecked}>
+            <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={todo.checked}>
               {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
             </button>
             <Button handleOnClick={handleRemove} icon={<Trash />} />
