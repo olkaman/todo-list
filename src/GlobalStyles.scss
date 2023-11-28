@@ -42,7 +42,7 @@ h2 {
   width: 100%;
 }
 
-input:not([type='checkbox']) {
+input {
   background-color: $background-gray;
   border: $dark-gray 1px solid;
   padding: 12px;
@@ -56,13 +56,6 @@ input:not([type='checkbox']) {
 
 input:focus {
   outline: $accent-color 1px solid;
-}
-
-input[type='checkbox'] {
-  padding: 8px;
-  height: 30px;
-  width: 30px;
-  background-color: $accent-color;
 }
 
 .center {

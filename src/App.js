@@ -6,9 +6,9 @@ import AddNewTodo from './components/AddNewTodo';
 import { Check, X } from 'lucide-react';
 import Button from './components/Button';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
+import Message from './components/Message';
 
 // TODO
-// local storage
 // authorization
 // backend
 // number of characters
@@ -18,15 +18,7 @@ import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localSt
 
 function App() {
   const [todosList, setTodosList] = useState(getTasksFromLocalStorage);
-  const numberOfDoneTasks = todosList.filter((item) => item.checked === true).length;
-  const totalNumberOfTasks = todosList.length;
-  const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    if (todosList.length === 0) setShowMessage(false);
-    else setShowMessage(numberOfDoneTasks === totalNumberOfTasks);
-  }, [numberOfDoneTasks, totalNumberOfTasks, todosList]);
-  console.log(todosList);
   useEffect(() => {
     saveInLocalStorage(todosList);
   }, [todosList]);
@@ -55,24 +47,11 @@ function App() {
     setTodosList(newList);
   };
 
-  const resetTodosList = () => {
-    setTodosList([]);
-    setShowMessage(false);
-  };
-
-  console.log(todosList);
   return (
     <div className='appContainer'>
       <h2>Todo list</h2>
       <div className='remainingTasks'>
-        Ready tasks: {numberOfDoneTasks} / {totalNumberOfTasks}
-        {showMessage && (
-          <div>
-            Congratulations! All tasks are done! Do you want to remove the list?
-            <Button handleOnClick={resetTodosList} icon={<Check />} />
-            <Button handleOnClick={() => setShowMessage(false)} icon={<X />} />
-          </div>
-        )}
+        <Message todosList={todosList} setTodosList={setTodosList} />
       </div>
       <AddNewTodo handleAddTask={handleAddTask} />
       {todosList.map((todo) => (
