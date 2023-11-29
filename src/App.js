@@ -1,20 +1,15 @@
 import TodoItem from './components/TodoItem';
 import './GlobalStyles.scss';
-import './AppStyles.scss';
+import styles from './AppStyles.module.scss';
 import { useEffect, useState } from 'react';
 import AddNewTodo from './components/AddNewTodo';
-import { Check, X } from 'lucide-react';
-import Button from './components/Button';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 import Message from './components/Message';
 
 // TODO
 // authorization
 // backend
-// number of characters
 // responsiveness
-// info, that all is done and if remove all tasks
-// input field component
 
 function App() {
   const [todosList, setTodosList] = useState(getTasksFromLocalStorage);
@@ -48,9 +43,9 @@ function App() {
   };
 
   return (
-    <div className='appContainer'>
+    <div className={styles.appContainer}>
       <h2>Todo list</h2>
-      <div className='remainingTasks'>
+      <div className={styles.remainingTasks}>
         <Message todosList={todosList} setTodosList={setTodosList} />
       </div>
       <AddNewTodo handleAddTask={handleAddTask} />
