@@ -49,9 +49,8 @@ function App() {
         <Message todosList={todosList} setTodosList={setTodosList} />
       </div>
       <AddNewTodo handleAddTask={handleAddTask} />
-      {todosList.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />
-      ))}
+      {todosList.length > 0 &&
+        todosList.map((todo) => <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />)}
     </div>
   );
 }
