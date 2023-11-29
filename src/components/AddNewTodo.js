@@ -12,7 +12,7 @@ function AddNewTodo({ handleAddTask }) {
   };
 
   return (
-    <div className='flex'>
+    <div className='flex mb-5'>
       <InputField handleOnSave={handleOnAdd} inputValue={inputValue} setInputValue={setInputValue} placeholder='Add new task' />
       <Button design='iconButton' handleOnClick={handleOnAdd} icon={<PlusSquare />} />
     </div>
