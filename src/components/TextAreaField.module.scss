@@ -1,0 +1,14 @@
+@import '../GlobalStyles.scss';
+
+.wrapper {
+  width: 100%;
+  position: relative;
+
+  .noCharacters {
+    font-size: $small-font-size;
+    position: absolute;
+    bottom: -16px;
+    right: 4px;
+    opacity: 0.5;
+  }
+}

@@ -4,15 +4,12 @@ import Button from './Button';
 import { useState } from 'react';
 import { Trash, Check, X } from 'lucide-react';
 import CustomCheckbox from './CustomCheckbox';
+import TextAreaField from './TextAreaField';
 
-function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
+function TodoItem({ editTaskValue, handleRemove, todo }) {
   const [isTaskEdited, setIsTaskEdited] = useState(false);
   const [inputValue, setInputValue] = useState(todo.task);
   const [isChecked, setIsChecked] = useState(todo.checked);
-
-  const handleOnEditTask = (e) => {
-    setInputValue(e.target.value);
-  };
 
   const handleOnSave = () => {
     setIsTaskEdited(!isTaskEdited);
@@ -30,18 +27,7 @@ function TodoItem({ checked, task, editTaskValue, handleRemove, todo }) {
         {!isTaskEdited && <CustomCheckbox checked={todo.checked} handleOnCheck={handleOnCheck} disabled={todo.task === ''} />}
         {isTaskEdited ? (
           <div className='flex spaceBetween'>
-            <input
-              type='text'
-              value={inputValue}
-              onChange={handleOnEditTask}
-              onKeyPress={(event) => {
-                if (event.key === 'Enter') {
-                  handleOnSave();
-                }
-              }}
-              placeholder='Enter task name'
-              maxLength='200'
-            />
+            <TextAreaField className={todo.id} handleOnSave={handleOnSave} inputValue={inputValue} setInputValue={setInputValue} placeholder='Edit task name' />
             <div className='flex'>
               <Button handleOnClick={handleOnSave} icon={<Check />} />
               <Button handleOnClick={() => setIsTaskEdited(!isTaskEdited)} icon={<X />} />
