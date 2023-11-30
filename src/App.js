@@ -12,11 +12,15 @@ import Message from './components/Message';
 // responsiveness
 
 function App() {
-  const [todosList, setTodosList] = useState(getTasksFromLocalStorage);
+  const [todosList, setTodosList] = useState([]);
 
   useEffect(() => {
     saveInLocalStorage(todosList);
   }, [todosList]);
+
+  useEffect(() => {
+    getTasksFromLocalStorage();
+  }, []);
 
   const editTaskValue = (updatedTodo) => {
     const newList = todosList.map((todo) => {
