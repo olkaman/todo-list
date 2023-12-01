@@ -1,7 +1,7 @@
 import TodoItem from './components/TodoItem';
 import './GlobalStyles.scss';
 import styles from './AppStyles.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 import Message from './components/Message';
@@ -12,15 +12,14 @@ import Message from './components/Message';
 // responsiveness
 
 function App() {
-  const [todosList, setTodosList] = useState([]);
+  const [todosList, setTodosList] = useState(() => {
+    const formLocalStorage = getTasksFromLocalStorage();
+    return formLocalStorage ?? [];
+  });
 
   useEffect(() => {
     saveInLocalStorage(todosList);
   }, [todosList]);
-
-  useEffect(() => {
-    getTasksFromLocalStorage();
-  }, []);
 
   const editTaskValue = (updatedTodo) => {
     const newList = todosList.map((todo) => {
@@ -53,8 +52,9 @@ function App() {
         <Message todosList={todosList} setTodosList={setTodosList} />
       </div>
       <AddNewTodo handleAddTask={handleAddTask} />
-      {todosList.length > 0 &&
-        todosList.map((todo) => <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />)}
+      {todosList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />
+      ))}
     </div>
   );
 }
