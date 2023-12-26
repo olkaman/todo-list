@@ -38,6 +38,7 @@ function TodoItem({ editTaskValue, handleRemove, todo }) {
             <button className={styles.todoText} onClick={() => setIsTaskEdited(!isTaskEdited)} disabled={todo.checked}>
               {todo.task !== '' ? todo.task : <i className={styles.taskPlaceholder}>Enter task name</i>}
             </button>
+            <p className={styles.date}>{new Date(todo.date).toLocaleString()}</p>
             <Button handleOnClick={handleRemove} icon={<Trash />} />
           </div>
         )}

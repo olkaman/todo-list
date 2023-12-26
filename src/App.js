@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 import Message from './components/Message';
+import { ArrowUpToLine, ArrowDownToLine } from 'lucide-react';
+import Sorters from './components/Sorters';
 
 // TODO
 // authorization
@@ -35,8 +37,9 @@ function App() {
       id: Math.floor(Math.random() * 10000000).toString(),
       task,
       checked: false,
+      date: Date.now(),
     };
-    const newList = [...todosList, newTodo];
+    const newList = [newTodo, ...todosList];
     setTodosList(newList);
   };
 
@@ -52,6 +55,7 @@ function App() {
         <Message todosList={todosList} setTodosList={setTodosList} />
       </div>
       <AddNewTodo handleAddTask={handleAddTask} />
+      <Sorters todosList={todosList} setTodosList={setTodosList} />
       {todosList.map((todo) => (
         <TodoItem key={todo.id} todo={todo} editTaskValue={(updatedTodo) => editTaskValue(updatedTodo)} handleRemove={() => handleRemove(todo.id)} />
       ))}

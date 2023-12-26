@@ -1,0 +1,21 @@
+@import '../GlobalStyles.scss';
+
+.buttons {
+  display: flex;
+
+  .button {
+    display: flex;
+    font-family: $font-family;
+    align-items: center;
+    border: none;
+    color: $light-gray;
+    background: none;
+    padding: 0 16px;
+    height: 32px;
+    transition: 0.4s all;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
