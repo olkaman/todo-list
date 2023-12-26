@@ -1,12 +1,12 @@
 import React from 'react';
 import { useRef } from 'react';
-import { ArrowUpToLine, ArrowDownToLine } from 'lucide-react';
 import styles from './SorterButton.module.scss';
 import SorterButton from './SorterButton';
 
 export default function Sorters({ todosList, setTodosList }) {
   const isTextAscending = useRef(false);
   const isDateAscending = useRef(false);
+  const isDone = useRef(false);
 
   const sortTodosByTask = () => {
     const newTodo = [...todosList];
@@ -26,10 +26,18 @@ export default function Sorters({ todosList, setTodosList }) {
     isDateAscending.current = !isDateAscending.current;
 
     newTodo.sort((a, b) => {
-      const task1 = a.date;
-      const task2 = b.date;
+      return isDateAscending.current ? a.date - b.date : b.date - a.date;
+    });
 
-      return isDateAscending.current ? task1 - task2 : task2 - task1;
+    setTodosList(newTodo);
+  };
+
+  const sortByDoneTask = () => {
+    const newTodo = [...todosList];
+    isDone.current = !isDone.current;
+
+    newTodo.sort((a, b) => {
+      return isDone.current ? a.checked - b.checked : b.checked - a.checked;
     });
 
     setTodosList(newTodo);
@@ -37,8 +45,9 @@ export default function Sorters({ todosList, setTodosList }) {
 
   return (
     <div className={styles.buttons}>
-      <SorterButton handleClick={sortTodosByTask} label='Sortuj alfabetycznie' isAscending={isTextAscending.current} />
-      <SorterButton handleClick={sortTodosByDate} label='Sortuj datami' isAscending={isDateAscending.current} />
+      <SorterButton handleClick={sortTodosByTask} label='Sort by name' isAscending={isTextAscending.current} />
+      <SorterButton handleClick={sortTodosByDate} label='Sort by date' isAscending={isDateAscending.current} />
+      <SorterButton handleClick={sortByDoneTask} label='Sort by done' isAscending={isDone.current} />
     </div>
   );
 }

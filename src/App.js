@@ -1,11 +1,10 @@
 import TodoItem from './components/TodoItem';
 import './GlobalStyles.scss';
 import styles from './AppStyles.module.scss';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 import Message from './components/Message';
-import { ArrowUpToLine, ArrowDownToLine } from 'lucide-react';
 import Sorters from './components/Sorters';
 
 // TODO
