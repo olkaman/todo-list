@@ -1,7 +1,7 @@
 import TodoItem from './components/TodoItem';
 import './GlobalStyles.scss';
 import styles from './AppStyles.module.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import AddNewTodo from './components/AddNewTodo';
 import { getTasksFromLocalStorage, saveInLocalStorage } from './services/localStorage.service';
 import Message from './components/Message';
@@ -13,10 +13,12 @@ import Sorters from './components/Sorters';
 // responsiveness
 
 function App() {
-  const [todosList, setTodosList] = useState(() => {
-    const formLocalStorage = getTasksFromLocalStorage();
-    return formLocalStorage ?? [];
-  });
+  const [todosList, setTodosList] = useState(
+    useCallback(() => {
+      const formLocalStorage = getTasksFromLocalStorage();
+      return formLocalStorage ?? [];
+    }, [])
+  );
 
   useEffect(() => {
     saveInLocalStorage(todosList);

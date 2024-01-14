@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowUpToLine, ArrowDownToLine } from 'lucide-react';
 import styles from './SorterButton.module.scss';
 
-export default function SorterButton({ handleClick, label, isAscending }) {
-  const [sorterResetted, setSorterResetted] = useState(true);
-
-  const handleOnClick = () => {
-    setSorterResetted(false);
-    handleClick();
-  };
-
+export default function SorterButton({ handleClick, children, sortOrder, sortLabel, label }) {
   return (
-    <button onClick={handleOnClick} className={styles.button}>
-      {label}
-      {!sorterResetted && (isAscending ? <ArrowDownToLine /> : <ArrowUpToLine />)}
+    <button onClick={handleClick} className={styles.button}>
+      {children}
+      {label === sortLabel && (sortOrder === 'asc' ? <ArrowUpToLine /> : <ArrowDownToLine />)}
     </button>
   );
 }
