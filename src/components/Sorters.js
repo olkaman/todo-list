@@ -45,7 +45,7 @@ export default function Sorters({ todosList, setTodosList }) {
   return (
     <div className={styles.buttons}>
       <SorterButton label='task' sortOrder={sortOrder} sortLabel={sortLabel} handleClick={() => handleSorting('task')}>
-        Sort by task
+        Sort by task name
       </SorterButton>
       <SorterButton label='date' sortOrder={sortOrder} sortLabel={sortLabel} handleClick={() => handleSorting('date')}>
         Sort by date
